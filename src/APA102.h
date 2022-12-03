@@ -53,22 +53,15 @@ public:
 
     for(uint16_t i = 0; i < pixels.Length(); i++)
     {
-      Serial.print(i);
-      Serial.print(":\t");
+      uint8_t buffer[4];
       for(int j = 24; j >= 0; j-=8) 
       {
         uint8_t datum = pixels[i] >> j;
-        Serial.print(datum);
-        Serial.print('\t');
         SPI.transfer(datum);
       }
-      Serial.println();
     }
     
-    SPI.transfer(255);
-    //SPI.transfer(255);
-    // SPI.transfer(255);
-    // SPI.transfer(255);
+    for(uint16_t j = 0; j < pixels.Length() / 2; j++) SPI.transfer(0xe0);
 
     SPI.endTransaction();
   }
