@@ -113,30 +113,6 @@ void setup()
   Serial.begin(115200);
   while(!Serial) {}
   strip.init();
-
-  // strip[0] = APA102::makeColor(10, 0, 0);
-  // strip[1] = APA102::makeColor(0, 10, 0);
-  // strip[2] = APA102::makeColor(0, 0, 10);
-  // strip[3] = APA102::makeColor(10, 0, 0);
-  // strip[4] = APA102::makeColor(0, 10, 0);
-  // strip[5] = APA102::makeColor(0, 0, 10);
-  // strip[6] = APA102::makeColor(10, 0, 0);
-  // strip[7] = APA102::makeColor(0, 10, 0);
-  // strip[8] = APA102::makeColor(0, 0, 10);
-  // strip[9] = APA102::makeColor(10, 0, 0);
-  // strip[10] = APA102::makeColor(0, 10, 0);
-  // strip[11] = APA102::makeColor(0, 0, 10);
-  // strip[12] = APA102::makeColor(10, 0, 0);
-  // strip[13] = APA102::makeColor(0, 10, 0);
-  // strip[14] = APA102::makeColor(0, 0, 10);
-  // strip[15] = APA102::makeColor(255, 0, 0);
-  // strip[16] = APA102::makeColor(0, 255, 0);
-  // strip[17] = APA102::makeColor(0, 0, 255);
-  // strip[18] = APA102::makeColor(10, 0, 0);
-  // strip[19] = APA102::makeColor(0, 10, 0);
-  // strip[20] = APA102::makeColor(0, 10, 0);
-
-  // strip.show();
 }
 
 void loop() 
