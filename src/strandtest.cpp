@@ -1,6 +1,6 @@
-#include "led_lamp.h"
+#include "APA102.h"
 
-LEDlamp lamp;
+APA102 strip(1);
 
 void ADCtoHSV(void)
 {
@@ -43,7 +43,7 @@ void ADCtoHSV(void)
   Serial.print(blu);
   Serial.print('\t');
 
-  lamp.UpdateRGB(red, grn, blu);
+  //lamp.UpdateRGB(red, grn, blu);
 }
 
 void ADCtoHSVfloat(void)
@@ -89,7 +89,7 @@ void ADCtoHSVfloat(void)
   Serial.print(blue);
   Serial.print('\n');
 
-  lamp.UpdateRGB(red, green, blue);
+  //lamp.UpdateRGB(red, green, blue);
 }
 
 void ADCtoRGB(void)
@@ -105,17 +105,49 @@ void ADCtoRGB(void)
   Serial.print(blue);
   Serial.print('\n');
 
-  lamp.UpdateRGB(red, green, blue);
+  //lamp.UpdateRGB(red, green, blue);
 }
 
 void setup() 
 {
   Serial.begin(115200);
-  lamp.Init();
+  while(!Serial) {}
+  strip.init();
+
+  // strip[0] = APA102::makeColor(10, 0, 0);
+  // strip[1] = APA102::makeColor(0, 10, 0);
+  // strip[2] = APA102::makeColor(0, 0, 10);
+  // strip[3] = APA102::makeColor(10, 0, 0);
+  // strip[4] = APA102::makeColor(0, 10, 0);
+  // strip[5] = APA102::makeColor(0, 0, 10);
+  // strip[6] = APA102::makeColor(10, 0, 0);
+  // strip[7] = APA102::makeColor(0, 10, 0);
+  // strip[8] = APA102::makeColor(0, 0, 10);
+  // strip[9] = APA102::makeColor(10, 0, 0);
+  // strip[10] = APA102::makeColor(0, 10, 0);
+  // strip[11] = APA102::makeColor(0, 0, 10);
+  // strip[12] = APA102::makeColor(10, 0, 0);
+  // strip[13] = APA102::makeColor(0, 10, 0);
+  // strip[14] = APA102::makeColor(0, 0, 10);
+  // strip[15] = APA102::makeColor(255, 0, 0);
+  // strip[16] = APA102::makeColor(0, 255, 0);
+  // strip[17] = APA102::makeColor(0, 0, 255);
+  // strip[18] = APA102::makeColor(10, 0, 0);
+  // strip[19] = APA102::makeColor(0, 10, 0);
+  // strip[20] = APA102::makeColor(0, 10, 0);
+
+  // strip.show();
 }
 
 void loop() 
 {
+  delay(20);
+  uint32_t currTime = millis();
+  uint16_t angle = (currTime / 20) % 360;
+  uint8_t r = 100 * (1+sin(angle * 3.14 / 180.));
+  uint8_t g = 100 * (1+sin((angle+120) * 3.14 / 180.));
+  uint8_t b = 100 * (1+sin((angle+240) * 3.14 / 180.));
   // Some example procedures showing how to display to the pixels
-  ADCtoHSV();
+  strip[0] = APA102::makeColor(r, g, b);
+  strip.show();
 }

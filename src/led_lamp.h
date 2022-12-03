@@ -17,7 +17,7 @@ protected:
   
   const uint16_t threshold = 4; //amount of change needed to "take"
   EventTimer rgbTimer; //time until rgb is "frozen"
-  APA102 strip = APA102(162);//, dataPin, clockPin);
+  APA102 strip = APA102(3);//, dataPin, clockPin);
 
 public:
   LEDlamp(void) : rgb(3) {}
