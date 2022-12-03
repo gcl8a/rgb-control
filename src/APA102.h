@@ -14,7 +14,7 @@ private:
   Int32Vector pixels;
 
 public:
-  APA102(uint16_t count) : pixels(count) {} 
+  APA102(int count) : pixels(count) {} 
   
   void init(void)
   {
@@ -51,7 +51,7 @@ public:
     SPI.transfer(0);
     SPI.transfer(0);
 
-    for(uint16_t i = 0; i < pixels.Length(); i++)
+    for(int i = 0; i < pixels.Length(); i++)
     {
       uint8_t buffer[4];
       for(int j = 24; j >= 0; j-=8) 
@@ -61,7 +61,7 @@ public:
       }
     }
     
-    for(uint16_t j = 0; j < pixels.Length() / 2; j++) SPI.transfer(0xe0);
+    for(int j = 0; j < pixels.Length() / 2; j++) SPI.transfer(0xe0);
 
     SPI.endTransaction();
   }
@@ -73,11 +73,6 @@ public:
 
     return color;
   }
-//
-//  uint32_t SetPixel(uint16_t i, uint32_t color)
-//  {
-//    return pixels[i] = color;
-//  }
 
   uint32_t& operator [] (int i)
   {
